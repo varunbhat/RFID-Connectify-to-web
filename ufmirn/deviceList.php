@@ -1,0 +1,30 @@
+<?php include_once "includes/head.php"; ?>
+<?php include_once "includes/functions.php";?>
+  <div data-role="header" data-position="fixed"> <a href="index.php" data-icon="home">Home</a>
+    <h1>Jarvis</h1>
+    <a href="deviceList.php" data-icon="info">List&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+   </div>
+  <!-- /header -->
+  <div data-role="content"  ><!--content-->
+    <ul data-role="listview" data-inset="true">
+      <?php
+
+		$con = openDB();
+$con = mysql_select_db("srishti");
+echo mysql_error();
+$result = mysql_query("SELECT status,id,name FROM deviceList");
+
+while($row = mysql_fetch_array($result))
+  {
+	  $stat = $row['status'];
+	  if($stat==1)$stat = 'ON';
+	  else $stat = 'OFF';
+	echo '<li><a href="deviceStatus.php?device=' .$row["id"].'">'.$row["name"].'</a><span class="ui-li-count">'.$stat.'</span></li>';
+  }
+	closeDB($con);
+?>
+    </ul>
+  </div>
+  <!--content -->
+
+<?php include_once "includes/foot.php";?>
