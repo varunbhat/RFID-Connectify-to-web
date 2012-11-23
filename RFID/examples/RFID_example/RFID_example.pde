@@ -1,7 +1,7 @@
 
 #include <RFID.h>
 // connect the pin 3 to the rs232 pin of the RFID reader
-RFID varun = RFID();
+RFID myRfid = RFID();
 
 void setup()
 {
@@ -11,7 +11,7 @@ void setup()
 void loop()
 {
   char *a;
-  a = varun.read();
+  a = myRfid.read();
   for(int i=0;i<12;i++)Serial.print(a[i]);
   Serial.println();
 }
